@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<h1>Cities</h1>
+<div class='row'>
+	{% for architecture in architectures %}
+        <div class='col-sm-4'>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h1 class="card-title">{{architecture.name}}</h1>
+                    <img class='architecture' src={{architecture.picture}}>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="{{url_for('editArchitecture', city_id=architecture.city_id, architecture_id=architecture.id)}}" class="btn btn-outline-dark">Edit</a>
+                    <a href="{{url_for('newArchitecture', city_id=architecture.city_id)}}" class='btn btn-outline-dark'>New Architecture</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <a href="{{url_for('newArchitecture', city_id=city_id)}}" class="btn btn-outline-dark">New Architecture</a>
+    <a href={{url_for('showCities')}}>Back to Cities</a>
+</div>
+{% endblock %}

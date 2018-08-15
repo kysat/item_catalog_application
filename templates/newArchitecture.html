@@ -1,0 +1,23 @@
+<h1>New Architecture</h1>
+<form action='#', method='POST'>
+    <div class='input'>
+        <p>Architecture Name:</p>
+        <input name='name' placeholder='Architecture Name'>
+    </div>
+    <div class='textarea'>
+        <p>City Description:</p>
+        <textarea name='description' placeholder="Description"></textarea>
+    </div>
+    <div class='input'>
+            <p>Architect:</p>
+            <input name='architect' placeholder='Architect Name'>
+        </div>
+    <div class='input'>
+            <p>Picture:</p>
+            <input name='picture' placeholder='picture link'>
+    </div>
+    <div class='button'>
+        <button type='submit' id='subit'>Save</button>
+    </div>
+</form>
+<a href={{url_for('showCities')}}>Back to Cities</a>

@@ -1,0 +1,14 @@
+<h1>Edit {{editCity.name}}</h1>
+<form action='#', method='POST'>
+    <div class='input'>
+        <input name='name' placeholder={{editCity.name}}>
+    </div>
+    <div class='textarea'>
+        <textarea name='description' placeholder="{{editCity.description}}"></textarea>
+    </div>
+    <div class='button'>
+        <button type='submit' id='submit'>Save</button>
+    </div>
+    
+</form>
+<a href={{url_for('showCities')}}>Back to Cities</a>
