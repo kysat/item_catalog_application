@@ -9,7 +9,9 @@ You can do below in this appliction.
 * See Cities and Architectures in each cities.
 * Register new city and architecture.
 
-![Sample Screen](https://user-images.githubusercontent.com/24450194/44159342-0e76da00-a0f2-11e8-8ef6-429404bf4917.png)
+![Sample Screen1](https://user-images.githubusercontent.com/24450194/44159342-0e76da00-a0f2-11e8-8ef6-429404bf4917.png)
+![Sample Screen2](https://user-images.githubusercontent.com/24450194/44159463-6b729000-a0f2-11e8-8229-b6f5cdbe7342.png)
+
 
 ## Requirement
 * Python
