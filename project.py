@@ -59,7 +59,7 @@ def newCity():
 def showArchitectures(city_id):
     city = session.query(City).filter_by(id=city_id).one()
     architectures = session.query(Architecture).filter_by(city=city).all()
-    return render_template('architectures.html', architectures=architectures, city_id=city_id)
+    return render_template('architectures.html', architectures=architectures, city_id=city_id, city=city)
 
 @app.route('/cities/<int:city_id>/architectures/new/', methods=['GET', 'POST'])
 def newArchitecture(city_id):
@@ -76,7 +76,7 @@ def newArchitecture(city_id):
     else:
         return render_template('newArchitecture.html', city_id=city_id)
 
-@app.route('/cities/<int:city_id>/architectures/<int:architecture_id>/', methods=['GET', 'POST'])
+@app.route('/cities/<int:city_id>/architectures/<int:architecture_id>/edit', methods=['GET', 'POST'])
 def editArchitecture(city_id, architecture_id):
     # city = session.query(City).filter_by(id=city_id).one()
     editArchitecture = session.query(Architecture).filter_by(id=architecture_id).one()
@@ -96,6 +96,16 @@ def editArchitecture(city_id, architecture_id):
         return redirect(url_for('showArchitectures', city_id=city_id))
     else:
         return render_template('editArchitecture.html', architecture=editArchitecture)
+
+@app.route('/cities/<int:city_id>/architectures/<int:architecture_id>/delete', methods=['GET', 'POST'])
+def deleteArchitecture(city_id, architecture_id):
+    deleteArchitecture = session.query(Architecture).filter_by(id=architecture_id).one()
+    if request.method == 'POST':
+        session.delete(deleteArchitecture)
+        session.commit()
+        return redirect(url_for('showArchitectures', city_id=city_id))
+    else:
+        return render_template('deleteArchitecture.html', deleteArchitecture=deleteArchitecture)
 
 
 if __name__ == '__main__':

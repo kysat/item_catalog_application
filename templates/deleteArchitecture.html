@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class='row'>
+        <div class="card" style="width: 23rem;">
+            <div class='card'>
+                <div class='card-body'>
+                <h1>Is it OK to delete {{deleteArchitecture.name}}?</h1>
+                <div class='picture'>
+                    <img src={{deleteArchitecture.picture}}>
+                </div>
+                <form action='#', method='POST'>
+                    <div class='button'>
+                        <button type='submit' id='submit' type='submit'>Delete</button>
+                    </div>
+                </form>
+                <a href={{url_for('showCities')}}>Back to Cities</a>
+
+{% endblock %}

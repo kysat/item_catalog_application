@@ -1,16 +1,7 @@
-.architecture {
+img {
     height: 300px;
     width: 300px;
 }
-
-/* .end-btn {
-    background-color: red;
-}
-
-.end-btn .btn {
-    display: inline-block;
-    text-align: center;
-} */
 
 .row {
     padding-bottom: 20px;

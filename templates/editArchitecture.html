@@ -1,26 +1,37 @@
-<h1>Edit Architecture</h1>
-<form action='#', method='POST'>
-    <div class='input'>
-        <p>Architecture Name:</p>
-        <input name='name' placeholder='Architecture Name'>
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="card" style="width: 23rem;">
+    <div class='card'>
+        <div class='card-body'>
+            <h1 class='card-title'>Edit Architecture</h1>
+            <form action='#', method='POST'>
+                <div class='input'>
+                    <p>Architecture Name:</p>
+                    <input name='name' placeholder='Architecture Name'>
+                </div>
+                <div class='textarea'>
+                    <p>City Description:</p>
+                    <textarea name='description' placeholder="Description"></textarea>
+                </div>
+                <div class='input'>
+                        <p>Architect:</p>
+                        <input name='architect' placeholder='Architect Name'>
+                </div>
+                <div class='picture'>
+                    <img src={{architecture.picture}}>
+                </div>
+                <div class='input'>
+                    <p>Picture:</p>
+                    <input name='picture' placeholder='Picture Link'>
+                </div>
+                <div class='button'>
+                    <a href={{url_for('showArchitectures', city_id=architecture.id)}} class='btn btn-outline-dark'>Cancel</a>
+                    <button type='submit' id='subit' class='btn btn-outline-dark'>Save</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class='textarea'>
-        <p>City Description:</p>
-        <textarea name='description' placeholder="Description"></textarea>
-    </div>
-    <div class='input'>
-            <p>Architect:</p>
-            <input name='architect' placeholder='Architect Name'>
-    </div>
-    <div class='picture'>
-        <img src={{architecture.picture}}>
-    </div>
-    <div class='input'>
-            <p>Picture:</p>
-            <input name='picture' placeholder='Picture Link'>
-    </div>
-    <div class='button'>
-        <button type='submit' id='subit'>Save</button>
-    </div>
-</form>
-<a href={{url_for('showCities')}}>Back to Cities</a>
+</div>
+
+{% endblock %}

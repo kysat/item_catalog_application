@@ -1,15 +1,27 @@
-<h1>New City</h1>
-<form action='#', method='POST'>
-    <div class='input'>
-        <p>City Name:</p>
-        <input name='name' placeholder='City Name'>
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class='row'>
+        <div class="card" style="width: 18rem;">
+            <div class='card'>
+                <div class='card-body'>
+                    <h1>New City</h1>
+                    <form action='#', method='POST'>
+                    <div class='input'>
+                        <p>City Name:</p>
+                        <input name='name' placeholder='City Name'>
+                    </div>
+                    <div class='textarea'>
+                        <p>City Description:</p>
+                        <textarea name='description' placeholder="Description"></textarea>
+                    </div>
+                    <div class='button'>
+                        <a href={{url_for('showCities')}} class='btn btn-outline-dark'>Cancel</a>
+                        <button type='submit' id='subit' class='btn btn-outline-dark'>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class='textarea'>
-        <p>City Description:</p>
-        <textarea name='description' placeholder="Description"></textarea>
-    </div>
-    <div class='button'>
-        <button type='submit' id='subit'>Save</button>
-    </div>
-</form>
-<a href={{url_for('showCities')}}>Back to Cities</a>
+</div>
+{% endblock %}

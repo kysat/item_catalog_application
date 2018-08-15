@@ -1,7 +1,19 @@
-<h1>Is it OK to delete {{deleteCity.name}}?</h1>
-<form action='#', method='POST'>
-    <div class='button'>
-        <button type='submit' id='submit' type='submit'>Delete</button>
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class='row'>
+    <div class="card" style="width: 18rem;">
+        <div class='card'>
+            <div class='card-body'>
+                <h1>Is it OK to delete {{deleteCity.name}}?</h1>
+                <form action='#', method='POST'>
+                    <div class='button'>
+                        <a href={{url_for('showCities')}} class='btn btn-outline-dark'>Cancel</a>
+                        <button type='submit' id='submit' type='submit' class='btn btn-outline-dark'>Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</form>
-<a href={{url_for('showCities')}}>Back to Cities</a>
+</div>
+{% endblock %}
