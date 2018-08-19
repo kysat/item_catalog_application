@@ -12,12 +12,6 @@ class User(Base):
     name = Column(String(250), nullable=False)
     email = Column(String(250), nullable=False)
 
-# class Architect(Base):
-#     __tablename__ = 'architect'
-
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(250), nullable=False)
-
 class City(Base):
     __tablename__ = 'city'
 
@@ -27,6 +21,15 @@ class City(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
+    # Add a property decorator to serialize information from this database
+    @property
+    def serialize(self):
+        return {
+            'city_name': self.name,
+            'city_description': self.description,
+            'id': self.id
+        }
+
 class Architecture(Base):
     __tablename__ = 'architecture'
 
@@ -34,12 +37,21 @@ class Architecture(Base):
     name = Column(String(250), nullable=False)
     description = Column(String(250), nullable=False)
     picture = Column(String(250), nullable = False)
-    # architect_id = Column(Integer, ForeignKey('architect.id'))
-    # architect = relationship(Architect)
     city_id = Column(Integer, ForeignKey('city.id'))
     city = relationship(City)
-    # architect = Column(String(250), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
 
+    # Add a property decorator to serialize information from this database
+    @property
+    def serialize(self):
+        return {
+            'architecture_name': self.name,
+            'architecture_description': self.description,
+            'architecture_image': self.picture,
+            'city_name': self.city.name,
+            'id': self.id
+        }
 
 engine = create_engine('sqlite:///city.db')
 

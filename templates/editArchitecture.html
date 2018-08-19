@@ -4,20 +4,13 @@
 <div class="card" style="width: 23rem;">
     <div class='card'>
         <div class='card-body'>
-            <h1 class='card-title'>Edit Architecture</h1>
+            <h1 class='card-title'>Edit {{architecture.name}}</h1>
             <form action='#', method='POST'>
                 <div class='input'>
                     <p>Architecture Name:</p>
-                    <input name='name' placeholder='Architecture Name'>
+                    <input name='name' placeholder="{{architecture.name}}">
                 </div>
-                <div class='textarea'>
-                    <p>City Description:</p>
-                    <textarea name='description' placeholder="Description"></textarea>
-                </div>
-                <div class='input'>
-                        <p>Architect:</p>
-                        <input name='architect' placeholder='Architect Name'>
-                </div>
+                <br>
                 <div class='picture'>
                     <img src={{architecture.picture}}>
                 </div>
@@ -25,9 +18,14 @@
                     <p>Picture:</p>
                     <input name='picture' placeholder='Picture Link'>
                 </div>
+                <br>
+                <div class='textarea'>
+                    <p>Description:</p>
+                    <textarea name='description' placeholder="{{architecture.description}}"></textarea>
+                </div>
                 <div class='button'>
-                    <a href={{url_for('showArchitectures', city_id=architecture.id)}} class='btn btn-outline-dark'>Cancel</a>
-                    <button type='submit' id='subit' class='btn btn-outline-dark'>Save</button>
+                    <a href={{url_for('showArchitectures', city_id=architecture.city_id)}} class='btn btn-outline-dark'>Cancel</a>
+                    <button type='submit' id='submit' class='btn btn-outline-dark'>Save</button>
                 </div>
             </form>
         </div>

@@ -13,56 +13,41 @@ session.add(User1)
 session.commit()
 
 City1 = City(name='Paris',
-             description='City of full of Arts')
+             description='Center of France')
 
 session.add(City1)
 session.commit()
 
-City2 = City(name='Chandigarh',
-             description='City of fully designed by master')
+City2 = City(name='Tokyo',
+             description='Center of Japan')
 
 session.add(City2)
 session.commit()
 
-City3 = City(name='Tokyo',
-             description='Fast City')
+City3 = City(name='Barcelona',
+             description='Center of Spain')
 
 session.add(City3)
 session.commit()
 
-City4 = City(name='Barcelona',
-             description='Full of Exitement')
-
+City4 = City(name='London',
+             description='Center of UK')
 session.add(City4)
 session.commit()
 
-City5 = City(name='London',
-             description='Sophisticated City')
+City5 = City(name='Berlin',
+             description='Center of Germany')
+
 session.add(City5)
 session.commit()
 
-City6 = City(name='Berlin',
-             description='Diversed City')
-
+City6 = City(name='New York',
+             description='Center of USA')
 session.add(City6)
 session.commit()
 
-City7 = City(name='New York',
-             description='Center of the World')
-session.add(City7)
-session.commit()
-
-# architect1 = Architect(name='Le Corbusier')
-# session.add(architect1)
-# session.commit()
-
-# architect2 = Architect(name='Renzo Piano')
-# session.add(architect2)
-# session.commit()
-
-architecture1 = Architecture(name='villa savoye',
-                            description='https://www.wikiwand.com/en/Villa_Savoye',
-                            # architect=architect1,
+architecture1 = Architecture(name='Villa Savoye',
+                            description='Architect: Le Corbusier',
                             picture='https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/VillaSavoye.jpg/480px-VillaSavoye.jpg',
                             city=City1
                             )
@@ -71,29 +56,37 @@ session.add(architecture1)
 session.commit()
 
 architecture2 = Architecture(name='Centre Pompidou',
-                             description='https://en.wikipedia.org/wiki/Centre_Georges_Pompidou',
-                            #  architect=architect2,
+                             description='Architect: Renzo Piano',
                              picture='https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Pompidou_center.jpg/480px-Pompidou_center.jpg',
                              city=City1
                              )
 session.add(architecture2)
 session.commit()
 
+architecture3 = Architecture(name="Unite d'habitation",
+                             description='Architect: Le Corbusier',
+                             picture='http://www.fondationlecorbusier.fr/CorbuCache/900x720_2049_791.jpg?r=0',
+                             city=City1)
+session.add(architecture3)
+session.commit()
 
+architecture4 = Architecture(name='Omotesando Hills',
+                             description='Architect: Tadao Ando',
+                             picture='https://eliinbar.files.wordpress.com/2011/02/001_b.jpg',
+                             city=City2)
+session.add(architecture4)
+session.commit()
 
-'''
-    id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
-    description = Column(String(250), nullable=False)
-    architect_id = Column(Integer, ForeignKey('architect.id')
-    architect = relationship(Architect)
-'''
+architecture5 = Architecture(name='Reversible Destiny Lofts MITAKA',
+                             description='Architect: Shusaku Arakawa',
+                             picture='https://s3.amazonaws.com/files.collageplatform.com.prod/image_cache/1010x580_fit/57e1a75587aa2c703cbd6ecf/6630861cad0ef3f5be2e7f63349eb032.jpeg',
+                             city=City2)
+session.add(architecture5)
+session.commit()
 
-'''
-    id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
-    description = Column(String(250), nullable=False)
-    image = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
-'''
+architecture6 = Architecture(name='Nakagin Capsule Tower',
+                             description='Architect: Kisho Kurokawa',
+                             picture='https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Nakagin.jpg/640px-Nakagin.jpg',
+                             city=City2)
+session.add(architecture6)
+session.commit()

@@ -8,14 +8,17 @@
 <div class='row'>
 	{% for city in cities %}
         <div class='col-sm-4'>
-            <div class="card" style="width: 18rem;">
+            <div class="card">
                 <div class="card-body">
                     <h1 class="card-title">{{city.name}}</h1>
                     <p class="card-text">{{city.description}}</p>
-                    <!-- <a href="#" class="btn btn-primary">View Architectures</a> -->
-                    <a href="{{url_for('showArchitectures', city_id=city.id)}}" class='btn btn-outline-dark'>View Architectures</a>
-                    <a href="{{url_for('editCity', city_id=city.id)}}" class='btn btn-outline-dark'>Edit Name</a>
-                    <a href="{{url_for('deleteCity', city_id=city.id)}}" class='btn btn-outline-dark'>Delete</a>
+                    <div class='first-button'>
+                        <a href="{{url_for('showArchitectures', city_id=city.id)}}" class='btn btn-outline-dark'>View Architectures</a>
+                    </div>
+                    <div class='second-button'>
+                        <a href="{{url_for('editCity', city_id=city.id)}}" class='btn btn-outline-dark'>Edit</a>
+                        <a href="{{url_for('deleteCity', city_id=city.id)}}" class='btn btn-outline-dark'>Delete</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,7 +26,6 @@
 </div>
 <div class='row'>
     <div class='col-sm-12'>
-        <!-- <div class="card"> -->
             <div class="card bg-light mb-3">
             <div class="card-body text-center">
                 <a href="{{url_for('newCity')}}" class='btn btn-outline-dark'>Add a New City</a>

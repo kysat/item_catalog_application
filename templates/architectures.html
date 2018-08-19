@@ -5,10 +5,13 @@
 <div class='row'>
 	{% for architecture in architectures %}
         <div class='col-sm-4'>
-            <div class="card" style="width: 23rem;">
+            <!-- <div class="card" style="width: 23rem;"> -->
+                <div class="card">
                 <div class="card-body">
                     <h1 class="card-title">{{architecture.name}}</h1>
-                    <img class='architecture' src={{architecture.picture}}>
+                    <img class='architecture' src="{{architecture.picture}}">
+                    <p>Description:</p>
+                    <p class='card-text'>{{architecture.description}}</p>
                     <a href="{{url_for('editArchitecture', city_id=architecture.city_id, architecture_id=architecture.id)}}" class="btn btn-outline-dark">Edit</a>
                     <a href="{{url_for('deleteArchitecture', city_id=architecture.city_id, architecture_id=architecture.id)}}" class='btn btn-outline-dark'>Delete</a>
                 </div>

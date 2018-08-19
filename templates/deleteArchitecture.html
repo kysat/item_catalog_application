@@ -7,13 +7,13 @@
                 <div class='card-body'>
                 <h1>Is it OK to delete {{deleteArchitecture.name}}?</h1>
                 <div class='picture'>
-                    <img src={{deleteArchitecture.picture}}>
+                    <img src="{{deleteArchitecture.picture}}">
                 </div>
                 <form action='#', method='POST'>
                     <div class='button'>
-                        <button type='submit' id='submit' type='submit'>Delete</button>
+                        <a href={{url_for('showCities')}} class='btn btn-outline-dark'>Back to Cities</a>
+                        <button type='submit' id='submit' type='submit' class='btn btn-outline-dark'>Delete</button>
                     </div>
                 </form>
-                <a href={{url_for('showCities')}}>Back to Cities</a>
 
 {% endblock %}
