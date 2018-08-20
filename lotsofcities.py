@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from database_setup import Base, User, City, Architecture
 
 engine = create_engine('sqlite:///city.db')
@@ -14,19 +13,16 @@ session.commit()
 
 City1 = City(name='Paris',
              description='Center of France')
-
 session.add(City1)
 session.commit()
 
 City2 = City(name='Tokyo',
              description='Center of Japan')
-
 session.add(City2)
 session.commit()
 
 City3 = City(name='Barcelona',
              description='Center of Spain')
-
 session.add(City3)
 session.commit()
 
@@ -37,7 +33,6 @@ session.commit()
 
 City5 = City(name='Berlin',
              description='Center of Germany')
-
 session.add(City5)
 session.commit()
 
@@ -49,17 +44,14 @@ session.commit()
 architecture1 = Architecture(name='Villa Savoye',
                             description='Architect: Le Corbusier',
                             picture='https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/VillaSavoye.jpg/480px-VillaSavoye.jpg',
-                            city=City1
-                            )
-
+                            city=City1)
 session.add(architecture1)
 session.commit()
 
 architecture2 = Architecture(name='Centre Pompidou',
                              description='Architect: Renzo Piano',
                              picture='https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Pompidou_center.jpg/480px-Pompidou_center.jpg',
-                             city=City1
-                             )
+                             city=City1)
 session.add(architecture2)
 session.commit()
 
