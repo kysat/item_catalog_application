@@ -9,8 +9,8 @@ You can do below in this appliction.
 * See Cities and Architectures in each cities.
 * Register new city and architecture.
 
-![Sample Screen1](https://user-images.githubusercontent.com/24450194/44159342-0e76da00-a0f2-11e8-8ef6-429404bf4917.png)
-![Sample Screen2](https://user-images.githubusercontent.com/24450194/44159463-6b729000-a0f2-11e8-8229-b6f5cdbe7342.png)
+![Sample Screen1](https://user-images.githubusercontent.com/24450194/44352992-b7517a80-a4e0-11e8-85c2-03380aeb77dd.png)
+![Sample Screen2](https://user-images.githubusercontent.com/24450194/44353014-c801f080-a4e0-11e8-83e8-565e04a726ba.png)
 
 
 ## Requirement
