@@ -39,7 +39,7 @@ class Architecture(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     description = Column(String(250), nullable=False)
-    picture = Column(String(250), nullable = False)
+    picture = Column(String(250), nullable=False)
     city_id = Column(Integer, ForeignKey('city.id'))
     city = relationship(City)
     user_id = Column(Integer, ForeignKey('user.id'))
