@@ -1,21 +1,18 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, \
-    flash
-
-app = Flask(__name__)
-
+from flask import Flask, render_template, request, redirect, jsonify,\
+ url_for, flash, make_response
+from flask import session as login_session
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, City, Architecture
-
-from flask import session as login_session
-import random, string
-
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 import httplib2
 import json
-from flask import make_response
 import requests
+import random
+import string
+
+app = Flask(__name__)
 
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
@@ -36,6 +33,7 @@ def showLogin():
         range(32))
     login_session['state'] = state
     return render_template('login.html', STATE=state)
+
 
 # Google sign-in
 @app.route('/gconnect', methods=['POST'])
