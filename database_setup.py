@@ -7,6 +7,9 @@ Base = declarative_base()
 
 
 class User(Base):
+    """
+    Registered user information is stored in db
+    """
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
@@ -15,6 +18,9 @@ class User(Base):
 
 
 class City(Base):
+    """
+    Registered city information is stored in db
+    """
     __tablename__ = 'city'
 
     id = Column(Integer, primary_key=True)
@@ -34,6 +40,9 @@ class City(Base):
 
 
 class Architecture(Base):
+    """
+    Registered architecture information is stored in db
+    """
     __tablename__ = 'architecture'
 
     id = Column(Integer, primary_key=True)
