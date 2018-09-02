@@ -158,11 +158,17 @@ def deleteCity(city_id):
 @app.route('/cities/new', methods=['GET', 'POST'])
 def newCity():
     if request.method == 'POST':
-        newCity = City(name=request.form['name'],
+        if request.form['name'] == '':
+            flash('Please input city name')
+        elif request.form['description'] == '':
+            flash('Please input description')
+        else:
+            newCity = City(name=request.form['name'],
                        description=request.form['description'])
-        session.add(newCity)
-        session.commit()
-        return redirect(url_for('showCities'))
+            session.add(newCity)
+            session.commit()
+            return redirect(url_for('showCities'))
+        return render_template('newCity.html')
     else:
         return render_template('newCity.html')
 
