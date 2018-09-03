@@ -186,13 +186,21 @@ def showArchitectures(city_id):
 def newArchitecture(city_id):
     city = session.query(City).filter_by(id=city_id).one()
     if request.method == 'POST':
-        newArchitecture = Architecture(name=request.form['name'],
+        if request.form['name'] != '' and request.form['picture'] != '' and request.form['description'] != '':
+            newArchitecture = Architecture(name=request.form['name'],
                                        description=request.form['description'],
                                        picture=request.form['picture'],
                                        city=city)
-        session.add(newArchitecture)
-        session.commit()
-        return redirect(url_for('showArchitectures', city_id=city_id))
+            session.add(newArchitecture)
+            session.commit()
+            return redirect(url_for('showArchitectures', city_id=city_id))
+        if request.form['name'] == '':
+            flash('Please input architecture name')
+        if request.form['picture'] == '':
+            flash('Please input picture address')
+        if request.form['description'] == '':
+            flash('Please input description')
+        return render_template('newArchitecture.html', city_id=city_id)
     else:
         return render_template('newArchitecture.html', city_id=city_id)
 
