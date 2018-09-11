@@ -61,7 +61,7 @@ def gconnect():
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
            % access_token)
     h = httplib2.Http()
-    result = json.loads(h.request(url, 'GET')[1])
+    result = json.loads(h.request(url, 'GET')[1].decode('utf-8'))
     # If there was an error in the access token info, abort.
     if result.get('error') is not None:
         response = make_response(json.dumps(result.get('error')), 500)
@@ -118,8 +118,22 @@ def gconnect():
               '150px; -moz-border-radius: 150px;">'
     flash("you are now logged in as %s" % login_session['username'])
     print("done!")
+    # If user is not in database, register.
+    try:
+        user = session.query(User).filter_by(email=login_session['email'])
+    except:
+        newUser = User(name=login_session['name'],
+                        email=login_session['email'])
     return output
 
+@app.route('/users')
+def showUsers():
+    users = session.query(User).order_by(User.id)
+    return render_template('users.html', users=users)
+
+@app.route('/logout')
+def logout():
+    return login_session['email']
 
 # Show all cities
 @app.route('/')
@@ -158,16 +172,16 @@ def deleteCity(city_id):
 @app.route('/cities/new', methods=['GET', 'POST'])
 def newCity():
     if request.method == 'POST':
-        if request.form['name'] != '' and request.form['description'] != '':
+        if request.form['name'] == '':
+            flash('Please input city name')
+        elif request.form['description'] == '':
+            flash('Please input description')
+        else:
             newCity = City(name=request.form['name'],
                        description=request.form['description'])
             session.add(newCity)
             session.commit()
             return redirect(url_for('showCities'))
-        if request.form['name'] == '':
-            flash('Please input city name')
-        if request.form['description'] == '':
-            flash('Please input description')
         return render_template('newCity.html')
     else:
         return render_template('newCity.html')
@@ -186,21 +200,13 @@ def showArchitectures(city_id):
 def newArchitecture(city_id):
     city = session.query(City).filter_by(id=city_id).one()
     if request.method == 'POST':
-        if request.form['name'] != '' and request.form['picture'] != '' and request.form['description'] != '':
-            newArchitecture = Architecture(name=request.form['name'],
+        newArchitecture = Architecture(name=request.form['name'],
                                        description=request.form['description'],
                                        picture=request.form['picture'],
                                        city=city)
-            session.add(newArchitecture)
-            session.commit()
-            return redirect(url_for('showArchitectures', city_id=city_id))
-        if request.form['name'] == '':
-            flash('Please input architecture name')
-        if request.form['picture'] == '':
-            flash('Please input picture address')
-        if request.form['description'] == '':
-            flash('Please input description')
-        return render_template('newArchitecture.html', city_id=city_id)
+        session.add(newArchitecture)
+        session.commit()
+        return redirect(url_for('showArchitectures', city_id=city_id))
     else:
         return render_template('newArchitecture.html', city_id=city_id)
 

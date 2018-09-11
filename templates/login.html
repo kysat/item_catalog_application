@@ -24,7 +24,7 @@ function signInCallback(authResult) {
     $('#signinButton').attr('style', 'display: none');
     // Send the one-time-use code to the server, if the server responds,
     // write a 'login successful' message to the web page,
-    // and then redirect back to the main restaurant page
+    // and then redirect back to the main page
     $.ajax({
         type: 'POST',
         url: '/gconnect?state={{STATE}}',
