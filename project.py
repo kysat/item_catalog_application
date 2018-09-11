@@ -126,15 +126,6 @@ def gconnect():
                         email=login_session['email'])
     return output
 
-@app.route('/users')
-def showUsers():
-    users = session.query(User).order_by(User.id)
-    return render_template('users.html', users=users)
-
-@app.route('/logout')
-def logout():
-    return login_session['email']
-
 # Show all cities
 @app.route('/')
 @app.route('/cities/')
