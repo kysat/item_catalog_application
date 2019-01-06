@@ -1,9 +1,10 @@
 {% extends "main.html" %}
 {% block content %}
-{% include "header.html" %}
+{% include "login_header.html" %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
 </script>
 <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+<meta name="google-signin-client_id" content="473095874921-33nu7pmeq2o0oejnetgfimjvbhn01k2s.apps.googleusercontent.com">
 
 <div id='signinButton'>
     <span class='g-signin'
@@ -13,10 +14,21 @@
         data-accesstype='offline'
         data-cookiepolicy='single_host_origin'
         data-callback='signInCallback'
-        data-approvalprompt='force'>
+        data-approvalprompt='force'
+        data-onsuccess="onSignIn">
     </span>
 </div>
 <div id='result'></div>
+
+<script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            document.getElementById('profileinfo').innerHTML = profile.getName() + "<br>"
+            + "<a href='mailto:'" + profile.getEmail() + "'>" + profile.getEmail() + "</a>" + "<br>"
+            + "<img src='" + profile.getImageUrl() + "'/>";
+        }
+</script>
+
 <script>
 function signInCallback(authResult) {
     if (authResult['code']) {
@@ -37,7 +49,7 @@ function signInCallback(authResult) {
                 $('#result').html('Login Successful!</br>' + result +
                 '</br>Redirecting...')
                 setTimeout(function() {
-                    window.location.href = '/cities';
+                    window.location.href = '/';
                 }, 4000);
             } else if (authResult['error']) {
                 console.log('There was an error: ' + authResult['error']);
@@ -49,5 +61,4 @@ function signInCallback(authResult) {
     }
 }
 </script>
-
 {% endblock %}

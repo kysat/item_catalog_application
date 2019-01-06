@@ -27,7 +27,7 @@ class City(Base):
     name = Column(String(250), nullable=False)
     description = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User, )
+    user = relationship(User)
 
     # Add a property decorator to serialize information from this database
     @property

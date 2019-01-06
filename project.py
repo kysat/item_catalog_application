@@ -21,18 +21,26 @@ engine = create_engine('sqlite:///city.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
-session = DBSession()
+session = DBSession() 
 
 
 # Create a state token
 # Store it in the session
 @app.route('/login')
 def showLogin():
+    if 'access_token' in login_session:
+        return redirect(url_for('showCities'))
     state = ''.join(
         random.choice(string.ascii_uppercase + string.digits) for x in
         range(32))
     login_session['state'] = state
     return render_template('login.html', STATE=state, CLIENT_ID=CLIENT_ID)
+
+
+@app.route('/logout')
+def logout():
+    login_session.pop('access_token', None)
+    return redirect(url_for('showLogin'))
 
 
 # Google sign-in
@@ -117,25 +125,31 @@ def gconnect():
               'border-radius: 150px;-webkit-border-radius: ' \
               '150px; -moz-border-radius: 150px;">'
     flash("you are now logged in as %s" % login_session['username'])
-    print("done!")
     # If user is not in database, register.
     try:
         user = session.query(User).filter_by(email=login_session['email'])
     except:
-        newUser = User(name=login_session['name'],
+        newUser = User(name=login_session['username'],
                         email=login_session['email'])
+        session.add(newUser)
+        session.commit()
     return output
+
 
 # Show all cities
 @app.route('/')
 @app.route('/cities/')
 def showCities():
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     cities = session.query(City).order_by(City.id)
     return render_template('cities.html', cities=cities)
 
 
 @app.route('/cities/<int:city_id>/edit/', methods=['GET', 'POST'])
 def editCity(city_id):
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     editCity = session.query(City).filter_by(id=city_id).one()
     if request.method == 'POST':
         if request.form['name']:
@@ -151,6 +165,8 @@ def editCity(city_id):
 
 @app.route('/cities/<int:city_id>/delete', methods=['GET', 'POST'])
 def deleteCity(city_id):
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     deleteCity = session.query(City).filter_by(id=city_id).one()
     if request.method == 'POST':
         session.delete(deleteCity)
@@ -162,6 +178,8 @@ def deleteCity(city_id):
 
 @app.route('/cities/new', methods=['GET', 'POST'])
 def newCity():
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     if request.method == 'POST':
         if request.form['name'] == '':
             flash('Please input city name')
@@ -177,10 +195,11 @@ def newCity():
     else:
         return render_template('newCity.html')
 
-
 @app.route('/cities/<int:city_id>/')
 @app.route('/cities/<int:city_id>/architectures/')
 def showArchitectures(city_id):
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     city = session.query(City).filter_by(id=city_id).one()
     architectures = session.query(Architecture).filter_by(city=city).all()
     return render_template('architectures.html', architectures=architectures,
@@ -189,6 +208,8 @@ def showArchitectures(city_id):
 
 @app.route('/cities/<int:city_id>/architectures/new/', methods=['GET', 'POST'])
 def newArchitecture(city_id):
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     city = session.query(City).filter_by(id=city_id).one()
     if request.method == 'POST':
         newArchitecture = Architecture(name=request.form['name'],
@@ -205,6 +226,8 @@ def newArchitecture(city_id):
 @app.route('/cities/<int:city_id>/architectures/<int:architecture_id>/edit',
            methods=['GET', 'POST'])
 def editArchitecture(city_id, architecture_id):
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     editArchitecture = session.query(Architecture).filter_by(
         id=architecture_id).one()
     if request.method == 'POST':
@@ -226,6 +249,8 @@ def editArchitecture(city_id, architecture_id):
 @app.route('/cities/<int:city_id>/architectures/<int:architecture_id>/delete',
            methods=['GET', 'POST'])
 def deleteArchitecture(city_id, architecture_id):
+    if 'access_token' not in login_session:
+        return redirect(url_for('showLogin'))
     deleteArchitecture = session.query(Architecture).filter_by(
         id=architecture_id).one()
     if request.method == 'POST':
