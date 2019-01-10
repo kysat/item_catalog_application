@@ -83,7 +83,8 @@ city_json = json.loads("""
 for e in city_json['Cities']:
     city_input = City(
         name=str(e['name']),
-        description=str(e['description'])
+        description=str(e['description']),
+        user=User1
     )
     session.add(city_input)
     session.commit()
@@ -96,7 +97,8 @@ for c in city_json['Architectures'].keys():
             name=str(e['name']),
             description=str(e['description']),
             picture=str(e['picture']),
-            city=city
+            city=city,
+            user=User1
         )
         session.add(architecture_input)
         session.commit()

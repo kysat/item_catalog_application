@@ -10,17 +10,20 @@
             <form action='#', method='POST'>
                 <div class='input'>
                     <p>Architecture Name:</p>
-                    <input name='name' placeholder='Architecture Name'>
+                    <input name='name' placeholder='Architecture Name'
+                           required>
                 </div>
                 <br>
                 <div class='input'>
                         <p>Picture:</p>
-                        <input name='picture' placeholder='Picture link'>
+                        <input name='picture' placeholder='Picture link'
+                               required>
                 </div>
                 <br>
                 <div class='textarea'>
                     <p>Description:</p>
-                    <textarea name='description' placeholder="Description"></textarea>
+                    <textarea name='description' placeholder="Description"
+                              required></textarea>
                 </div>
                 <div class='button'>
                     <a href={{url_for('showArchitectures', city_id=city_id)}} class='btn btn-outline-dark'>Cancel</a>

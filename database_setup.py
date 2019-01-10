@@ -28,6 +28,7 @@ class City(Base):
     description = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+    architecture = relationship("Architecture", cascade="all, delete-orphan")
 
     # Add a property decorator to serialize information from this database
     @property

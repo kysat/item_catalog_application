@@ -21,9 +21,11 @@ You can do below in this appliction.
 
 ## How to Use
 1. Start up Vagrant.
-2. In the command line, switch to `item_catalog_application/` directory.
-3. Run: `python project.py`, then it starts up.
-4. Access `http://localhost:8000/`.
+1. In the command line, switch to `item_catalog_application/` directory.
+1. To setup (or recreate) database, Run: `python database_setup.py`
+1. (optional) To populate database by dummy data, Run: `python lotsofcities.py`
+1. Run: `python project.py`, then it starts up.
+1. Access `http://localhost:8000/`.
 
 ## License
 This project is licensed under the MIT License.
